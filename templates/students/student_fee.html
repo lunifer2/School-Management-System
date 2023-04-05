@@ -1,0 +1,21 @@
+{% extends 'layouts/master.html' %}
+
+{% block title %}
+    Student Fee - Add
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex-row justify-content-center">
+        <div class="card p-2 mt-3" style="border-radius: 0%;
+        max-width: 75%;" >
+          {% load crispy_forms_tags %}
+            <form action="{% url 'fee-student' %}" method="post" >
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-primary mt-3">ADD FEE</button>
+                <a href="{% url 'fee-index-student' %}" class="btn btn-primary mt-3">BACK</a>
+              </form>
+        </div>
+</div>
+{% endblock %}

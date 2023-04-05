@@ -1,0 +1,61 @@
+{% extends 'layouts/master.html' %}
+
+{% block title %}
+    Teacher - List
+{% endblock %}
+
+{% block custom_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+
+    {% include "partials/_message.html" %}
+
+    <h1>This is Teacher list page</h1>
+    <hr>
+    <a href="{% url 'add-teacher' %}" class="btn btn-primary mb-3"><i class="fa-solid fa-plus"></i> Add</a>
+    <a href="{% url 'add-teacher-subject' %}" class="btn btn-primary mb-3"><i class="fa-solid fa-plus"></i> ASSIGN SUBJECTS</a>
+    <div class="row">
+        <div class="col-8">
+            <table class="table table-striped-columns table-hover">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>First Name</th>
+                        <th>Middle Name</th>
+                        <th>Last Name</th>
+                        <th>Mobile</th>
+                        <th>Session</th>
+                        <th>Teacher Status</th>
+                        <th>Application Status</th>
+                        <th>Hire Date</th>
+                        <th>Course Name</th>
+                        <th colspan="3">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for val in data %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ val.first_name }}</td>
+                        <td>{{ val.middle_name }}</td>
+                        <td>{{ val.last_name }}</td>
+                        <td>{{val.mobile_no}}</td>
+                        <td>{{val.session}}</td>
+                        <td>{{val.teacher_status}}</td>
+                        <td>{{val.application_status}}</td>
+                        <td>{{val.hire_date}}</td>
+                        <td>{{val.course_name}}</td>
+                        <td><a href="{% url 'view-teacher' val.id %}"><i class="fa-solid fa-eye"></i></a></td>
+                        <td><a href="{% url 'edit-teacher' val.id %}"><i class="fa-solid fa-pencil"></i></a></td>
+                        <td><a href="{% url 'delete-teacher' val.id %}"><i class="fa-solid fa-trash"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

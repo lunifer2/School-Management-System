@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {% load static %}
+
+    <!-- Bootstrap CSS -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+
+    <title>
+      {% block title %} <!-- title will be written here in whichever page it is
+      extended --> {% endblock %}
+    </title>
+
+    <!-- custom css -->
+    {% block custom_css %}
+    <!-- css link will be added here -->
+    {% endblock %}
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark header-back sticky-top header-navbar-fonts"
+>
+      <a class="navbar-brand d-flex align-items-center" href="">
+        <img
+          src="{% static 'image/download.png' %}"
+          class="logo-image"
+          width="50"
+          height="50"
+        />
+        <h3 class="text-light text-uppercase ml-2">GREEN PEACE College</h3>
+      </a>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'logout' %}"
+              ><i class="fa fa-sign-out text-white fa-lg" aria-hidden="true"></i
+              ><span class="sr-only">(current)</span></a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="row w-100">
+      <button class="show-btn button-show ml-auto">
+        <i class="fa fa-bars py-1" aria-hidden="true"></i>
+      </button>
+    </div>
+    <nav id="sidebarMenu" class="">
+      <div
+        class="col-xl-2 col-lg-3 col-md-4 sidebar position-fixed border-right">
+        <div class="sidebar-header">
+          <div class="nav-item">
+            <a class="nav-link text-white" href="">
+              <span class="home"></span>
+              <i class="fa fa-home mr-2" aria-hidden="true"></i> Dashboard
+            </a>
+          </div>
+        </div>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index-teacher' %}">
+              <span data-feather="file"></span>
+              <i class=""></i>
+              <i class="fa fa-user" aria-hidden="true"></i> Teacher Registration
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'salary-teacher' %}">
+              <span data-feather="layers"></span>
+              <i class="fa fa-wallet mr-2" aria-hidden="true"></i> Teacher
+              Salary
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index-student' %}">
+              <span data-feather="shopping-cart"></span>
+              <i class="fa fa-user" aria-hidden="true"></i> Student Registration
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index-course' %}">
+              <span data-feather="users"></span>
+              <i class="fa-solid fa-book mr-2" aria-hidden="true"></i> Courses
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index-subject' %}">
+              <span data-feather="bar-chart-2"></span>
+              <i class="fa-solid fa-book-open" aria-hidden="true"></i> Subjects
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'fee-index-student' %}">
+              <span data-feather="layers"></span>
+              <i class="fa fa-credit-card-alt mr-2" aria-hidden="true"></i>
+              Student Fee
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- body content here -->
+    {% block content %}
+    <!-- body content over here -->
+    {% endblock %}
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- custom js -->
+    {% block custom_js %}
+    <!-- js source over here -->
+    {% endblock %}
+  </body>
+</html>

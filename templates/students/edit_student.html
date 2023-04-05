@@ -1,0 +1,161 @@
+{% extends 'layouts/master.html' %}
+
+{% block title %}
+    Student - Edit
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <h1>This is Student edit page</h1>
+    
+    <hr>
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <form action="{% url 'update-student' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ data.id }}" />
+                <div class="form-group mb-2">
+                    <label class="mb-2">Roll no</label>
+                    <input
+                        type="number"
+                        class="form-control"
+                        name="roll_no"
+                        value="{{ data.roll_no }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2">First Name</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="first_name"
+                        value="{{ data.first_name }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2">Middle Name</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="middle_name"
+                        value="{{ data.middle_name }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2">Last Name</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="last_name"
+                        value="{{ data.last_name }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2">Father Name</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="father_name"
+                        value="{{ data.father_name }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2">Mobile</label>
+                    <input
+                        type="number"
+                        class="form-control"
+                        name="mobile_no"
+                        value="{{ data.mobile_no }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2">Email</label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        name="email"
+                        value="{{ data.email }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2">Session</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="session"
+                        value="{{ data.session }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2">Applicant Status</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="applicant_status"
+                        value="{{ data.applicant_status }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2">Application Status</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="application_status"
+                        value="{{ data.application_status }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2">Date Of Birth</label>
+                    <input
+                        type="date"
+                        class="form-control"
+                        name="dob"
+                        value="{{ data.dob }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2">Gender</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="gender"
+                        value="{{ data.gender }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2">Admission Date</label>
+                    <input
+                        type="date"
+                        class="form-control"
+                        name="admission_date"
+                        value="{{ data.admission_date }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label class="mb-2">Address</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="address"
+                        value="{{ data.address }}"
+                    >
+                </div>
+                <div class="form-group mb-2">
+                    <label>Select Course</label>
+                    <select name="course" class="form-control">
+                        {% for val in course %}
+                        <option value="{{ val.id }}">{{ val.course_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <input type="submit" class="btn btn-primary mt-2" value="UPDATE">
+                <a href="{% url 'index-student' %}" class="btn btn-primary mt-2">BACK</a>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'layouts/master.html' %}
+
+{% block title %}
+    Student Fee - List
+{% endblock %}
+
+{% block custom_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+
+    {% include "partials/_message.html" %}
+
+    <h1>This is Student Fee page</h1>
+    <hr>
+    <a href="{% url 'fee-student' %}" class="btn btn-primary mb-3"><i class="fa-solid fa-plus"></i> Add</a>
+    <div class="row">
+        <div class="col-8">
+            <table class="table table-striped-columns table-hover">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Fee Voucher</th>
+                        <th>Roll No.</th>
+                        <th>Amount</th>
+                        <th>Posting Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for val in data %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ val.fee_voucher }}</td>
+                        <td>{{ val.roll_no }}</td>
+                        <td>{{ val.amount }}</td>
+                        <td>{{ val.posting_date }}</td>
+                        <td>{{ val.status }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'layouts/master.html' %}
+
+{% block title %}
+    Subject - List
+{% endblock %}
+
+{% block custom_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+
+    {% include "partials/_message.html" %}
+
+    <h1>This is Subject list page</h1>
+    <hr>
+    <a href="{% url 'add-subject' %}" class="btn btn-primary mb-3"><i class="fa-solid fa-plus"></i> Add</a>
+    <div class="row">
+        <div class="col-8">
+            <table class="table table-striped-columns table-hover">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Course Name</th>
+                        <th>Subject Code</th>
+                        <th>Subject Name</th>
+                        <th>Semester</th>
+                        <th>Credit Hours</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for val in data %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ val.course_code }}</td>
+                        <td>{{ val.subject_code }}</td>
+                        <td>{{ val.subject_name }}</td>
+                        <td>{{ val.semester }}</td>
+                        <td>{{ val.credit_hours }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
