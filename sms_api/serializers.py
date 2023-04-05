@@ -56,7 +56,7 @@ class Student_feeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student_fee
         fields = ('id',
-                  'fee-voucher',
+                  'fee_voucher',
                   'roll_no',
                   'amount',
                   'posting_date',
