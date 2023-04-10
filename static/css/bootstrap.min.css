@@ -568,7 +568,7 @@ progress {
   .container-md,
   .container-sm,
   .container-xl {
-    max-width: 1140px;
+    max-width: 1045px;
   }
 }
 @media (min-width: 1400px) {
@@ -3753,7 +3753,7 @@ fieldset:disabled .btn {
   display: flex;
   flex-wrap: inherit;
   align-items: center;
-  justify-content: space-between;
+  justify-content: right;
 }
 .navbar-brand {
   padding-top: 0.3125rem;

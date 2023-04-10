@@ -15,6 +15,16 @@
 
     <h1>This is Student list page</h1>
     <hr>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+              <form class="d-flex" role="search" action="{% url 'index-student' %}" method="POST">
+                {% csrf_token %}
+                <input style="height: 30px;" class="form-control me-2" type="text" name="search" placeholder="Search by first name." aria-label="Search">
+                <button class="btn btn-primary mb-3 mr-3" type="submit" style="height:30px; width: 160px; padding: 0px;"><i class="fa-solid fa-search"></i>Search</button>
+                <a href="{% url 'index-student' %}" class="btn btn-primary mb-3 ml-2"  style="height:30px; width: 160px; padding: 0px; margin-left: 5px;">Clear</a>
+              </form>
+        </div>
+    </nav>
     <a href="{% url 'add-student' %}" class="btn btn-primary mb-3"><i class="fa-solid fa-plus"></i> Add</a>
     <div class="row">
         <div class="col-8">

@@ -12,6 +12,11 @@ def courses_index(request):
     """ Returns the list of courses """
     course_list = Course.objects.all()
     context = {"data": course_list}
+    if request.method == "POST":
+        search = request.POST.get('search')
+        courses = Course.objects.filter(course_name__icontains=search)
+        context = {"data": courses}
+        return render(request, 'courses/courses_index.html', context)
     return render(request, 'courses/courses_index.html', context)
 
 
@@ -86,6 +91,11 @@ def students_index(request):
     """ Returns the list of students """
     student_list = Student.objects.all()
     context = {"data": student_list}
+    if request.method == "POST":
+        search = request.POST.get('search')
+        students = Student.objects.filter(first_name__icontains=search)
+        context = {"data": students}
+        return render(request, 'students/student_index.html', context)
     return render(request, 'students/student_index.html', context)
 
 
@@ -179,6 +189,11 @@ def teachers_index(request):
     """ Returns the list of teachers """
     teachers_list = Teacher.objects.all()
     context = {"data": teachers_list}
+    if request.method == "POST":
+        search = request.POST.get('search')
+        teachers = Teacher.objects.filter(first_name__icontains=search)
+        context = {"data": teachers}
+        return render(request, 'teachers/teacher_index.html', context)
     return render(request, 'teachers/teacher_index.html', context)
 
 
@@ -260,6 +275,11 @@ def teachers_salary(request):
     """ Returns the salary of teachers """
     salary_list = Teacher_salary.objects.all()
     context = {"data": salary_list}
+    if request.method == "POST":
+        search = request.POST.get('search')
+        salary = Teacher_salary.objects.filter(teacher_id__first_name__icontains=search)
+        context = {"data": salary}
+        return render(request, 'teachers/teacher_salary.html', context)
     return render(request, 'teachers/teacher_salary.html', context)
 
 
@@ -294,6 +314,11 @@ def subjects_index(request):
     """ Returns the list of subjects """
     subject_list = Subject.objects.all()
     context = {"data": subject_list}
+    if request.method == "POST":
+        search = request.POST.get('search')
+        subjects = Subject.objects.filter(subject_name__icontains=search)
+        context = {"data": subjects}
+        return render(request, 'subjects/subject_index.html', context)
     return render(request, 'subjects/subject_index.html', context)
 
 
@@ -356,4 +381,9 @@ def students_fee_index(request):
     """ Returns the list of students fee """
     fee_list = Student_fee.objects.all()
     context = {"data": fee_list}
+    if request.method == "POST":
+        search = request.POST.get('search')
+        fee = Student_fee.objects.filter(roll_no__first_name__icontains=search)
+        context = {"data": fee}
+        return render(request, 'students/student_fee_index.html', context)
     return render(request, 'students/student_fee_index.html', context)
