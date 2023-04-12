@@ -10,7 +10,7 @@
         <div class="card p-2 mt-3" style="border-radius: 0%;
         max-width: 75%;" >
           {% load crispy_forms_tags %}
-            <form action="{% url 'add-student' %}" method="post" >
+            <form action="{% url 'add-student' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form|crispy }}
                 <button type="submit" class="btn btn-primary mt-3">ADD STUDENT</button>

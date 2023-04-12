@@ -32,6 +32,7 @@
                 <thead>
                     <tr>
                         <th>S.No</th>
+                        <th>Photo</th>
                         <th>Roll No.</th>
                         <th>First Name</th>
                         <th>Middle Name</th>
@@ -49,6 +50,7 @@
                     {% for val in data %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
+                        <td><img src="{{ val.image.url }}" width="50"></td>
                         <td>{{ val.roll_no }}</td>
                         <td>{{ val.first_name }}</td>
                         <td>{{ val.middle_name }}</td>

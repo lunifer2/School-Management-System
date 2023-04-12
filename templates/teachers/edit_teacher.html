@@ -13,9 +13,18 @@
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-            <form action="{% url 'update-teacher' %}" method="post">
+            <form action="{% url 'update-teacher' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="hidden" name="id" value="{{ data.id }}" />
+                <div class="form-group mb-2">
+                    <label class="mb-2">Photo</label>
+                    <input
+                        type="file"
+                        class="form-control"
+                        name="image"
+                        value="{{ data.image }}"
+                    >
+                </div>
                 <div class="form-group mb-2">
                     <label class="mb-2">First Name</label>
                     <input
