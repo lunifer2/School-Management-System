@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import CourseApiView, CourseApiIdView, SubjectApiIdView, SubjectApiView, StudentApiIdView, StudentApiView, CourseOfStudentApiIdView, CourseOfStudentApiView, TeacherApiIdView, TeacherApiView,  TeacherSalaryApiIdView, TeacherSalaryApiView,TeacherSalaryAllowanceApiIdView, TeacherSalaryAllowanceApiView, SubjectOfTeacherApiIdView, SubjectOfTeacherApiView,StudentFeeApiIdView, StudentFeeApiView
+from .views import UserLoginView ,CourseApiView, CourseApiIdView, SubjectApiIdView, SubjectApiView, StudentApiIdView, StudentApiView, CourseOfStudentApiIdView, CourseOfStudentApiView, TeacherApiIdView, TeacherApiView,  TeacherSalaryApiIdView, TeacherSalaryApiView,TeacherSalaryAllowanceApiIdView, TeacherSalaryAllowanceApiView, SubjectOfTeacherApiIdView, SubjectOfTeacherApiView,StudentFeeApiIdView, StudentFeeApiView
 
 
 urlpatterns = [
@@ -21,4 +21,5 @@ urlpatterns = [
     path('teacher/subject/<int:id>/', SubjectOfTeacherApiIdView.as_view()),
     path('student/fee/', StudentFeeApiView.as_view()),
     path('student/fee/<int:id>/', StudentFeeApiIdView.as_view()),
+    path('login/', UserLoginView.as_view()),
 ]

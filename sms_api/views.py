@@ -1,13 +1,14 @@
 from django.shortcuts import render
-from .serializers import CourseSerializer, SubjectSerializer, StudentSerializer, Course_of_studentSerializer, Teacher_salary_allowanceSerializer, Teacher_salarySerializer, TeacherSerializer, Subject_of_teacherSerializer, Student_feeSerializer
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
+from .serializers import LoginSerializer ,CourseSerializer, SubjectSerializer, StudentSerializer, Course_of_studentSerializer, Teacher_salary_allowanceSerializer, Teacher_salarySerializer, TeacherSerializer, Subject_of_teacherSerializer, Student_feeSerializer
 from SMS.models import Course, Teacher, Subject, Student, Course_of_student, Student_fee, Subject_of_teacher, Teacher_salary, Teacher_salary_allowance
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import serializers
 from rest_framework.views import APIView
-
+from django.contrib.auth import login
 # Create your views here.
-
 
 class CustomResponse():
     """ This class helps to inherit responses"""
@@ -29,6 +30,23 @@ class CustomResponse():
             "error": error
         }
         return res
+
+class UserLoginView(APIView):
+    def post(self,request):
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            password = serializer.data.get('password')
+            username = serializer.data.get('username')
+            try:
+                user = User.objects.get(username=username)
+                if user.check_password(password):
+                    return Response({'msg':'Login successful'}, status=status.HTTP_200_OK)
+                else:
+                    return Response({'msg':'Incorrect password'}, status=status.HTTP_401_UNAUTHORIZED)
+            except User.DoesNotExist:
+                return Response({'msg':'User does not exist'}, status=status.HTTP_404_NOT_FOUND)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CourseApiView(APIView):
