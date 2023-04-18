@@ -70,5 +70,26 @@
             </table>
         </div>
     </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+          <li class="page-item">
+            {% if data.has_previous %}
+                <a class="page-link" href="{%  url 'index-student' %}?page={{ data.previous_page_number }}">Previous</a>
+            {% endif %}
+          </li>
+            {% for num_page in data.paginator.page_range %}
+            {% if data.number == num_page %}
+             <li class="page-item active"><a class="page-link" href="{%  url 'index-student' %}?page={{ num_page }}">{{ num_page }}</a></li>
+             {% else %}
+             <li class="page-item"><a class="page-link" href="{%  url 'index-student' %}?page={{ num_page }}">{{ num_page }}</a></li>
+             {% endif %}
+            {% endfor %}
+          <li class="page-item">
+            {% if data.has_next %}
+                <a class="page-link" href="{%  url 'index-student' %}?page={{ data.next_page_number }}"">Next</a>
+            {% endif %}
+            </li>
+        </ul>
+      </nav>
 </div>
 {% endblock %}

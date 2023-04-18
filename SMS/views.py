@@ -4,14 +4,18 @@ from .models import Course, Student, Teacher, Teacher_salary, Teacher_salary_all
 from django.views import View
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 # Create your views here.
 
 
 @login_required(login_url='login')
 def courses_index(request):
     """ Returns the list of courses """
-    course_list = Course.objects.all()
-    context = {"data": course_list}
+    course_list = Course.objects.all().order_by('id')
+    paginator = Paginator(course_list, 3) # Show 3 datas per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {"data": page_obj}
     if request.method == "POST":
         search = request.POST.get('search')
         courses = Course.objects.filter(course_name__icontains=search)
@@ -90,8 +94,11 @@ class Student_add_View(View):
 @login_required(login_url='login')
 def students_index(request):
     """ Returns the list of students """
-    student_list = Student.objects.all()
-    context = {"data": student_list}
+    student_list = Student.objects.all().order_by('id')
+    paginator = Paginator(student_list, 3) # Show 3 datas per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {"data": page_obj}
     if request.method == "POST":
         search = request.POST.get('search')
         students = Student.objects.filter(first_name__icontains=search)
@@ -189,8 +196,11 @@ class Teacher_add_View(View):
 @login_required(login_url='login')
 def teachers_index(request):
     """ Returns the list of teachers """
-    teachers_list = Teacher.objects.all()
-    context = {"data": teachers_list}
+    teachers_list = Teacher.objects.all().order_by('id')
+    paginator = Paginator(teachers_list, 3) # Show 3 datas per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {"data": page_obj}
     if request.method == "POST":
         search = request.POST.get('search')
         teachers = Teacher.objects.filter(first_name__icontains=search)
@@ -275,8 +285,11 @@ class Teacher_add_salary_View(View):
 @login_required(login_url='login')
 def teachers_salary(request):
     """ Returns the salary of teachers """
-    salary_list = Teacher_salary.objects.all()
-    context = {"data": salary_list}
+    salary_list = Teacher_salary.objects.all().order_by('id')
+    paginator = Paginator(salary_list, 3) # Show 3 datas per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {"data": page_obj}
     if request.method == "POST":
         search = request.POST.get('search')
         salary = Teacher_salary.objects.filter(teacher_id__first_name__icontains=search)
@@ -314,8 +327,11 @@ class Subject_add_View(View):
 @login_required(login_url='login')
 def subjects_index(request):
     """ Returns the list of subjects """
-    subject_list = Subject.objects.all()
-    context = {"data": subject_list}
+    subject_list = Subject.objects.all().order_by('id')
+    paginator = Paginator(subject_list, 3) # Show 3 datas per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {"data": page_obj}
     if request.method == "POST":
         search = request.POST.get('search')
         subjects = Subject.objects.filter(subject_name__icontains=search)
@@ -381,8 +397,11 @@ class Student_fee_View(View):
 @login_required(login_url='login')
 def students_fee_index(request):
     """ Returns the list of students fee """
-    fee_list = Student_fee.objects.all()
-    context = {"data": fee_list}
+    fee_list = Student_fee.objects.all().order_by('id')
+    paginator = Paginator(fee_list, 3) # Show 3 datas per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {"data": page_obj}
     if request.method == "POST":
         search = request.POST.get('search')
         fee = Student_fee.objects.filter(roll_no__first_name__icontains=search)

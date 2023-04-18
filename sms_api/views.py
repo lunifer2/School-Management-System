@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate
-from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import User
 from .serializers import RegisterSerializer, LoginSerializer ,CourseSerializer, SubjectSerializer, StudentSerializer, Course_of_studentSerializer, Teacher_salary_allowanceSerializer, Teacher_salarySerializer, TeacherSerializer, Subject_of_teacherSerializer, Student_feeSerializer
 from SMS.models import Course, Teacher, Subject, Student, Course_of_student, Student_fee, Subject_of_teacher, Teacher_salary, Teacher_salary_allowance
