@@ -33,21 +33,18 @@ class CustomResponse():
 
 class UserLoginView(APIView):
     def post(self,request):
-        serializer = LoginSerializer(data=request.data)
-        if serializer.is_valid():
-            password = serializer.data.get('password')
-            username = serializer.data.get('username')
-            try:
-                user = User.objects.get(username=username)
-                if user.check_password(password):
-                    return Response({'msg':'Login successful'}, status=status.HTTP_200_OK)
-                else:
-                    return Response({'msg':'Incorrect password'}, status=status.HTTP_401_UNAUTHORIZED)
-            except User.DoesNotExist:
-                return Response({'msg':'User does not exist'}, status=status.HTTP_404_NOT_FOUND)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+        serializer = LoginSerializer(request.data)
+        password = serializer.data.get('password')
+        username = serializer.data.get('username')
+        try:
+            user = User.objects.get(username=username)
+            if user.check_password(str(password)):
+                return Response({'msg':'Login successful'}, status=status.HTTP_200_OK)
+            else:
+                return Response({'msg':'Incorrect password'}, status=status.HTTP_401_UNAUTHORIZED)
+        except User.DoesNotExist:
+            return Response({'msg':'User does not exist'}, status=status.HTTP_404_NOT_FOUND)
+       
 
 class CourseApiView(APIView):
     """ This class adds and shows the list of courses"""

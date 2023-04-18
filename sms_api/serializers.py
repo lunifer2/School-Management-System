@@ -2,6 +2,11 @@ from rest_framework import serializers
 from SMS.models import Course, Teacher_salary, Teacher_salary_allowance, Subject_of_teacher, Teacher, Subject, Student, Course_of_student, Student_fee
 from django.contrib.auth.models import User
 
+# class RegisterSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields =()
+
 class LoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
