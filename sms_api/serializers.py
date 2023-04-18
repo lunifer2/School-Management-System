@@ -2,10 +2,29 @@ from rest_framework import serializers
 from SMS.models import Course, Teacher_salary, Teacher_salary_allowance, Subject_of_teacher, Teacher, Subject, Student, Course_of_student, Student_fee
 from django.contrib.auth.models import User
 
-# class RegisterSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields =()
+class RegisterSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(required=True)
+    class Meta:
+        model = User
+        fields =('id',
+                 'email',
+                 'username',
+                 'password')
+        extra_kwargs = {
+            'password':{"write_only": True},
+        }
+        
+    def create(self, validated_data):
+        username = validated_data.get('username')
+        email = validated_data.get('email')
+        password = validated_data.get('password1')
+        user = User(username=username, email=email)
+        user.set_password(password)
+        user.save()
+        return user
+       
+
+        return super().create(validated_data)   
 
 class LoginSerializer(serializers.ModelSerializer):
     class Meta:
